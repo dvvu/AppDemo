@@ -11,6 +11,8 @@
 
 @implementation UIView (Pinchable)
 
+CGSize currentViewSize;
+
 #pragma mark - setPinchable
 
 - (void)setPinchable:(BOOL)pinchable {
@@ -24,6 +26,7 @@
     
     self.pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchWithGestureRecognizer:)];
     [self.superview addGestureRecognizer:self.pinchGesture];
+    currentViewSize = self.frame.size;
 }
 
 #pragma mark - setPanGesture
@@ -42,9 +45,25 @@
 
 #pragma mark - pinchWithGestureRecognizer
 
+CGFloat lastScaleFactor;
+
 - (void)pinchWithGestureRecognizer:(UIPinchGestureRecognizer *)sender {
     
-    self.transform = CGAffineTransformScale(self.transform, sender.scale, sender.scale);
+    // zoom in
+    if (sender.scale < 1) {
+        
+        if (self.frame.size.height < currentViewSize.height) {
+            
+            return;
+        } else {
+         
+            self.transform = CGAffineTransformScale(self.transform, sender.scale, sender.scale);
+        }
+    } else { // zoom in
+        
+        self.transform = CGAffineTransformScale(self.transform, sender.scale, sender.scale);
+    }
+    
     sender.scale = 1.0;
 }
 

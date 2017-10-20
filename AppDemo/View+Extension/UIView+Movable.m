@@ -12,6 +12,7 @@
 @implementation UIView (Movable)
 
 CGPoint tapBeganPoint;
+CGPoint currentPoint;
 
 #pragma mark - setMovable
 
@@ -27,7 +28,7 @@ CGPoint tapBeganPoint;
     self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     self.panGesture.maximumNumberOfTouches = 1;
     self.panGesture.minimumNumberOfTouches = 1;
-    [self addGestureRecognizer:self.panGesture];
+    [self.superview addGestureRecognizer:self.panGesture];
 }
 
 #pragma mark - setPanGesture
@@ -80,44 +81,50 @@ CGPoint tapBeganPoint;
 
 - (void)handlePan:(UIPanGestureRecognizer *)sender {
     
-    [self.superview bringSubviewToFront:sender.view];
+    currentPoint = self.center;
+    [self.superview.superview bringSubviewToFront:sender.view];
     CGSize parentViewSize = self.superview.frame.size;
     CGPoint translatedPoint = [sender translationInView:self.superview];
-    
+
     if (sender.state == UIGestureRecognizerStateBegan) {
-        
+
         tapBeganPoint = [[sender view] center];
     }
-    
-    translatedPoint = CGPointMake(tapBeganPoint.x + (([self shouldMoveAlongX]) ? translatedPoint.x : 0), tapBeganPoint.y + (([self shouldMoveAlongY]) ? translatedPoint.y : 0));
-    
+
+    translatedPoint = CGPointMake(currentPoint.x + (([self shouldMoveAlongX]) ? translatedPoint.x : 0), currentPoint.y + (([self shouldMoveAlongY]) ? translatedPoint.y : 0));
+
     CGFloat velocityX = translatedPoint.x;
     CGFloat velocityY = translatedPoint.y;
     
+    // thredHold = maximum conner 45 -> 0.707
+    CGFloat thredHold = 0.707 - 0.5;
+    
     // X
-    if (velocityX <= -self.frame.size.width * 0.4) {
-    
+    if (velocityX <= -self.frame.size.width * thredHold) {
+
         // Don't move
-        velocityX = -self.frame.size.width * 0.4;
-    }
-    
-    if (velocityX >= parentViewSize.width + self.frame.size.width * 0.4) {
-        
-        velocityX = parentViewSize.width + self.frame.size.width * 0.4;
-    }
-    
-    // Y
-    if (velocityY <= -self.frame.size.height * 0.4) {
-        
-        velocityY = -self.frame.size.height * 0.4;
-    }
-    
-    if (velocityY >= parentViewSize.height + self.frame.size.height * 0.4) {
-        
-        velocityY = parentViewSize.height + self.frame.size.height * 0.4;
+        velocityX = -self.frame.size.width * thredHold;
     }
 
-    [[sender view] setCenter:CGPointMake(velocityX, velocityY)];
+    if (velocityX >= parentViewSize.width + self.frame.size.width * thredHold) {
+
+        velocityX = parentViewSize.width + self.frame.size.width * thredHold;
+    }
+
+    // Y
+    if (velocityY <= -self.frame.size.height * thredHold) {
+
+        velocityY = -self.frame.size.height * thredHold;
+    }
+
+    if (velocityY >= parentViewSize.height + self.frame.size.height * thredHold) {
+
+        velocityY = parentViewSize.height + self.frame.size.height * thredHold;
+    }
+    
+    currentPoint = CGPointMake(velocityX, velocityY);
+    [self setCenter:currentPoint];
+    [sender setTranslation:(CGPoint){0, 0} inView:[self superview]];
 }
 
 @end
