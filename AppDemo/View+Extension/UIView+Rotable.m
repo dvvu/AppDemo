@@ -23,7 +23,7 @@
 - (void)enableRotable {
     
     self.rotationGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotationWithGestureRecognizer:)];
-    [[self superview] addGestureRecognizer:self.rotationGesture];
+    [self addGestureRecognizer:self.rotationGesture];
 }
 
 #pragma mark - setRotationGesture
