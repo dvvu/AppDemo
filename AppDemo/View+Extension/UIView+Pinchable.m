@@ -23,7 +23,7 @@
 - (void)enablePinchable {
     
     self.pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchWithGestureRecognizer:)];
-    [self addGestureRecognizer:self.pinchGesture];
+    [self.superview addGestureRecognizer:self.pinchGesture];
 }
 
 #pragma mark - setPanGesture

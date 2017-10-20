@@ -14,10 +14,10 @@
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView* parentView;
 @property (nonatomic) UIView* demoView;
 @property (nonatomic) CGFloat edgeSize;
 
-@property (nonatomic) UIView* demoView1;
 @end
 
 @implementation ViewController
@@ -26,11 +26,12 @@
 
     [super viewDidLoad];
 
+    [_parentView setBackgroundColor:[UIColor redColor]];
     _edgeSize = EDGE_SIZE;
     _demoView = [[UIView alloc] init];
     _demoView.frame = CGRectMake(self.view.center.x - _edgeSize / 2, self.view.center.y - _edgeSize / 2, _edgeSize, _edgeSize);
     [_demoView setBackgroundColor:[UIColor greenColor]];
-    [self.view addSubview:_demoView];
+    [_parentView addSubview:_demoView];
 
     // drag
     [_demoView enableMovable];
@@ -40,21 +41,6 @@
 
     // zoom
     [_demoView enablePinchable];
-    
-    
-    _demoView1 = [[UIView alloc] init];
-    _demoView1.frame = CGRectMake(self.view.center.x - _edgeSize / 2, self.view.center.y - _edgeSize / 2, _edgeSize, _edgeSize);
-    [_demoView1 setBackgroundColor:[UIColor redColor]];
-    [self.view addSubview:_demoView1];
-    
-    // drag
-    [_demoView1 enableMovable];
-    
-    // rotate
-    [_demoView1 enableRotable];
-    
-    // zoom
-    [_demoView1 enablePinchable];
 }
 
 @end
