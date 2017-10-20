@@ -14,6 +14,9 @@
 		EA81945D1F98C57000FC85DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA81945B1F98C57000FC85DC /* LaunchScreen.storyboard */; };
 		EA8194601F98C57000FC85DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA81945F1F98C57000FC85DC /* main.m */; };
 		EA81946A1F98C57000FC85DC /* AppDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8194691F98C57000FC85DC /* AppDemoTests.m */; };
+		EA81947F1F9903EB00FC85DC /* UIView+Movable.m in Sources */ = {isa = PBXBuildFile; fileRef = EA81947E1F9903EB00FC85DC /* UIView+Movable.m */; };
+		EA8194851F99111000FC85DC /* UIView+Rotable.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8194841F99111000FC85DC /* UIView+Rotable.m */; };
+		EA81948B1F99143600FC85DC /* UIView+Pinchable.m in Sources */ = {isa = PBXBuildFile; fileRef = EA81948A1F99143600FC85DC /* UIView+Pinchable.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,13 @@
 		EA8194651F98C57000FC85DC /* AppDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8194691F98C57000FC85DC /* AppDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDemoTests.m; sourceTree = "<group>"; };
 		EA81946B1F98C57000FC85DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA8194771F98D33000FC85DC /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		EA81947B1F99033B00FC85DC /* UIView+Movable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Movable.h"; sourceTree = "<group>"; };
+		EA81947E1F9903EB00FC85DC /* UIView+Movable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Movable.m"; sourceTree = "<group>"; };
+		EA8194831F99111000FC85DC /* UIView+Rotable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Rotable.h"; sourceTree = "<group>"; };
+		EA8194841F99111000FC85DC /* UIView+Rotable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Rotable.m"; sourceTree = "<group>"; };
+		EA8194891F99143600FC85DC /* UIView+Pinchable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Pinchable.h"; sourceTree = "<group>"; };
+		EA81948A1F99143600FC85DC /* UIView+Pinchable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Pinchable.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,12 +91,14 @@
 		EA81944F1F98C57000FC85DC /* AppDemo */ = {
 			isa = PBXGroup;
 			children = (
-				EA8194501F98C57000FC85DC /* AppDelegate.h */,
-				EA8194511F98C57000FC85DC /* AppDelegate.m */,
+				EA81948C1F99160000FC85DC /* View+Extension */,
+				EA8194771F98D33000FC85DC /* Constants.h */,
 				EA8194531F98C57000FC85DC /* ViewController.h */,
 				EA8194541F98C57000FC85DC /* ViewController.m */,
-				EA8194561F98C57000FC85DC /* Main.storyboard */,
 				EA8194591F98C57000FC85DC /* Assets.xcassets */,
+				EA8194501F98C57000FC85DC /* AppDelegate.h */,
+				EA8194511F98C57000FC85DC /* AppDelegate.m */,
+				EA8194561F98C57000FC85DC /* Main.storyboard */,
 				EA81945B1F98C57000FC85DC /* LaunchScreen.storyboard */,
 				EA81945E1F98C57000FC85DC /* Info.plist */,
 				EA81945F1F98C57000FC85DC /* main.m */,
@@ -101,6 +113,19 @@
 				EA81946B1F98C57000FC85DC /* Info.plist */,
 			);
 			path = AppDemoTests;
+			sourceTree = "<group>";
+		};
+		EA81948C1F99160000FC85DC /* View+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EA81947B1F99033B00FC85DC /* UIView+Movable.h */,
+				EA81947E1F9903EB00FC85DC /* UIView+Movable.m */,
+				EA8194831F99111000FC85DC /* UIView+Rotable.h */,
+				EA8194841F99111000FC85DC /* UIView+Rotable.m */,
+				EA8194891F99143600FC85DC /* UIView+Pinchable.h */,
+				EA81948A1F99143600FC85DC /* UIView+Pinchable.m */,
+			);
+			path = "View+Extension";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,7 +231,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA8194551F98C57000FC85DC /* ViewController.m in Sources */,
+				EA81948B1F99143600FC85DC /* UIView+Pinchable.m in Sources */,
 				EA8194601F98C57000FC85DC /* main.m in Sources */,
+				EA8194851F99111000FC85DC /* UIView+Rotable.m in Sources */,
+				EA81947F1F9903EB00FC85DC /* UIView+Movable.m in Sources */,
 				EA8194521F98C57000FC85DC /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,7 +325,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -346,7 +374,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -358,7 +386,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2FXVJFZPXW;
 				INFOPLIST_FILE = AppDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = VNG.AppDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -371,7 +401,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2FXVJFZPXW;
 				INFOPLIST_FILE = AppDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = VNG.AppDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
