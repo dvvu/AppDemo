@@ -124,7 +124,7 @@ CGPoint currentPoint;
     
     currentPoint = CGPointMake(velocityX, velocityY);
     [self setCenter:currentPoint];
-    [sender setTranslation:(CGPoint){0, 0} inView:[self superview]];
+    [sender setTranslation:CGPointZero inView:self.superview];
 }
 
 @end

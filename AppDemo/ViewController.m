@@ -35,10 +35,10 @@
 
     // drag
     [_demoView enableMovable];
-
+    
     // rotate
     [_demoView enableRotable];
-
+ 
     // zoom
     [_demoView enablePinchable];
 }

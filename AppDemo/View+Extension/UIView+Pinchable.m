@@ -45,26 +45,25 @@ CGSize currentViewSize;
 
 #pragma mark - pinchWithGestureRecognizer
 
-CGFloat lastScaleFactor;
-
 - (void)pinchWithGestureRecognizer:(UIPinchGestureRecognizer *)sender {
-    
-    // zoom in
+
+    BOOL isZoom = NO;
     if (sender.scale < 1) {
-        
-        if (self.frame.size.height < currentViewSize.height) {
-            
-            return;
-        } else {
-         
-            self.transform = CGAffineTransformScale(self.transform, sender.scale, sender.scale);
+
+        if (self.frame.size.height > currentViewSize.height) {
+
+            isZoom = YES;
         }
-    } else { // zoom in
-        
-        self.transform = CGAffineTransformScale(self.transform, sender.scale, sender.scale);
+    } else {
+
+        isZoom = YES;
     }
     
-    sender.scale = 1.0;
+    if (isZoom) {
+        
+        self.transform = CGAffineTransformScale(self.transform, sender.scale, sender.scale);
+        sender.scale = 1.0;
+    }
 }
 
 @end
